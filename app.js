@@ -20,6 +20,21 @@ const gameBoard = (function () {
 })();
 
 //renders contents of the gameBoard array to the webpage
-let displayController = (function () {})();
+let displayController = (function () {
+  const squares = document.querySelectorAll(".field");
+  const renderArray = () => {
+    for (let i = 0; i < array.length; i++) {
+      const gameArray = gameBoard.getGameBoard[i];
+      squares.forEach(() => {
+        squares.textContent = gameArray;
+      });
+    }
+    return {
+      renderArray,
+    };
+  };
+})();
+
+gameBoard.generateGameArray();
 
 //factories for items that we need multiples of ***players***
