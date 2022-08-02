@@ -20,21 +20,26 @@ const gameBoard = (function () {
 })();
 
 //renders contents of the gameBoard array to the webpage
-let displayController = (function () {
+const displayController = (function () {
   const squares = document.querySelectorAll(".field");
-  const renderArray = () => {
-    for (let i = 0; i < array.length; i++) {
-      const gameArray = gameBoard.getGameBoard[i];
-      squares.forEach(() => {
-        squares.textContent = gameArray;
-      });
+  //sets game board value to the game array values
+  const setArray = function () {
+    for (let i = 0; i < gameBoard.getGameBoard().length; i++) {
+      squares[i].textContent = gameBoard.getGameBoard()[i];
     }
-    return {
-      renderArray,
-    };
+  };
+  //Add event listeners to the Squares and when a player clicks a square add their mark to that square
+  return {
+    setArray,
   };
 })();
 
 gameBoard.generateGameArray();
 
 //factories for items that we need multiples of ***players***
+const Player = (name, mark) => {
+  return { name, mark };
+};
+
+const player1 = Player("player1", "X");
+const player2 = Player("player2", "O");
