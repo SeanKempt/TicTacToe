@@ -22,6 +22,8 @@ const gameBoard = (function () {
 //renders contents of the gameBoard array to the webpage
 const displayController = (function () {
   const squares = document.querySelectorAll(".field");
+  const playerTurnButton1 = document.getElementById("player1");
+  const playerTurnButton2 = document.getElementById("player2");
 
   //sets game board value to the game array values
   const setArray = function () {
@@ -37,8 +39,24 @@ const displayController = (function () {
           alert(`Sorry this space is taken. Try again!`);
         }
         Element.textContent = player1.mark;
+        switchTurn();
       });
     });
+  };
+
+  //changes the current turn indicator to the correct player
+  const switchTurn = () => {
+    if (player1.isTurn === true && player2.isTurn === false) {
+      player2.isTurn = true;
+      player1.isTurn = false;
+      playerTurnButton2.classList.toggle("current-turn");
+      playerTurnButton1.classList.toggle("current-turn");
+    } else {
+      player1.isTurn = true;
+      player2.isTurn = false;
+      playerTurnButton2.classList.toggle("current-turn");
+      playerTurnButton1.classList.toggle("current-turn");
+    }
   };
 
   return {
@@ -51,11 +69,11 @@ gameBoard.generateGameArray();
 displayController.squareListeners();
 
 //factories for items that we need multiples of ***players***
-const Player = (name, mark) => {
-  return { name, mark };
+const Player = (name, mark, isTurn) => {
+  return { name, mark, isTurn };
 };
 
-const player1 = Player("player1", "X");
-const player2 = Player("player2", "O");
+const player1 = Player("player1", "X", true);
+const player2 = Player("player2", "O", false);
 
-//create buttons and allow turns based off of the value of the button
+//add an option or maybe a function to the square listener where if its player1's turn use their mark if its player2's turn use their mark instead.

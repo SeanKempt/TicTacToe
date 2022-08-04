@@ -11,16 +11,16 @@ body {
 #main-container {
     display: flex;
     flex: 1;
-    background-color: blueviolet;
+    background-color: rgba(137, 43, 226, 0.614);
     justify-content: center;
 }
 
 #header-container {
-    background-color: olivedrab;
+    background-color: rgba(109, 139, 48, 0.808);
 }
 
 #footer-container {
-    background-color: orange;
+    background-color: rgb(245, 175, 44);
 }
 
 #gameboard {
@@ -28,6 +28,8 @@ body {
     display: grid;
     grid-template-columns: 250px 250px 250px;
     grid-template-rows: 250px 250px 250px;
+    width: 50%;
+    justify-content: center;
 }
 
 #top ,#bottom, #left, #right, #middle {
@@ -52,4 +54,8 @@ body {
 #right {
     border-right: none;
     border-left: none;
+}
+
+.current-turn {
+    background-color: #4CAF50;
 }
