@@ -13,9 +13,19 @@ const gameBoard = (function () {
     }
   };
 
+  //checks what players turn it is.
+  const currentTurn = () => {
+    if (player1.isTurn) {
+      return player1.name;
+    } else {
+      return player2.name;
+    }
+  };
+
   return {
     getGameBoard,
     generateGameArray,
+    currentTurn,
   };
 })();
 
@@ -35,10 +45,15 @@ const displayController = (function () {
   const squareListeners = () => {
     squares.forEach((Element) => {
       Element.addEventListener("click", function () {
+        const row = Element.dataset.row;
+        const column = Element.dataset.column;
         if (Element.textContent === "X" || Element.textContent === "O") {
-          alert(`Sorry this space is taken. Try again!`);
+          return alert(`Sorry this space is taken. Try again!`);
+        } else if (!player1.isTurn) {
+          Element.textContent = player2.mark;
+        } else {
+          Element.textContent = player1.mark;
         }
-        Element.textContent = player1.mark;
         switchTurn();
       });
     });
@@ -62,6 +77,7 @@ const displayController = (function () {
   return {
     setArray,
     squareListeners,
+    squares,
   };
 })();
 
@@ -76,4 +92,7 @@ const Player = (name, mark, isTurn) => {
 const player1 = Player("player1", "X", true);
 const player2 = Player("player2", "O", false);
 
-//add an option or maybe a function to the square listener where if its player1's turn use their mark if its player2's turn use their mark instead.
+//Game Board is currently checking for wins just by individual clicks. We need to track player movements individually or I need to find a better way to track player movements or else I can't see who won.
+//Need to also appropriately place everything where it needs to go into modules. Clean things up.
+//Need to come up with a new check winner solution.
+//create win matrix based on index of squares and make an array to track the movements of each player and push the index of the square that is selected to the array based on the current players turn
