@@ -38,6 +38,7 @@ const gameBoard = (function () {
     for (let i = 0; i < 9; i++) {
       _gameArray.push("");
     }
+    _playAgainListener();
   };
 
   //checks what player's turn it is.
@@ -49,8 +50,14 @@ const gameBoard = (function () {
     }
   };
 
-  //to reset squares to original state
+  const _playAgainListener = () => {
+    displayController.playAgainBtn.addEventListener("click", function () {
+      gameReset();
+      displayController.modal.style.display = "none";
+    });
+  };
 
+  //to reset squares to original state
   const _resetSquares = () => {
     displayController.squares.forEach((element) => {
       element.textContent = "";
@@ -98,6 +105,8 @@ const displayController = (function () {
   const modal = document.getElementById("winner-modal");
   const span = document.getElementsByClassName("close")[0];
   const winner = document.getElementById("winner");
+  const playAgainBtn = document.getElementById("play-again");
+  const resetBtn = document.getElementById("reset-btn");
 
   //sets modal display to block. To be used with winner declaration. Replaced alerts.
   const setWinner = (name) => {
@@ -124,7 +133,7 @@ const displayController = (function () {
     }
   };
   //Add event listeners to the Squares and when a player clicks a square add their mark to that square
-  const squareListeners = () => {
+  const _squareListeners = () => {
     squares.forEach((Element) => {
       Element.addEventListener("click", function () {
         if (Element.textContent === "X" || Element.textContent === "O") {
@@ -142,6 +151,18 @@ const displayController = (function () {
         _switchTurn();
         gameBoard.checkTie();
       });
+    });
+  };
+
+  const initListeners = () => {
+    _squareListeners();
+    resetGameBtnListener();
+    closeModal();
+  };
+
+  const resetGameBtnListener = () => {
+    resetBtn.addEventListener("click", function () {
+      gameBoard.gameReset();
     });
   };
 
@@ -169,18 +190,19 @@ const displayController = (function () {
   };
 
   return {
-    squareListeners,
     squares,
     closeModal,
     setWinner,
     setTie,
+    initListeners,
     turnClassReset,
+    playAgainBtn,
+    modal,
   };
 })();
 
 gameBoard.generateGameArray();
-displayController.squareListeners();
-displayController.closeModal();
+displayController.initListeners();
 
 //factories for items that we need multiples of ***players***
 const Player = (name, mark, isTurn) => {

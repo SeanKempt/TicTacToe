@@ -12,12 +12,22 @@ body {
 #main-container {
     display: flex;
     flex: 1;
-    background-color: rgba(137, 43, 226, 0.614);
+    background-color: #01cda9;
     justify-content: center;
 }
 
 #header-container {
-    background-color: rgba(109, 139, 48, 0.808);
+    background-color: white;
+    color: #010101;
+    display: flex;
+}
+
+#reset-btn {
+    margin-left: auto;
+    margin-right: 50px;
+    height: 40px;
+    width: 100px;
+    align-self: center;
 }
 
 #footer-container {
@@ -31,6 +41,12 @@ body {
     grid-template-rows: 250px 250px 250px;
     width: 50%;
     justify-content: center;
+    margin-right: 150px;
+    padding: 50px;
+    background-color: #f0ffff;
+    border-radius: 25px;
+    color: #332d4f;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
 }
 
 #top ,#bottom, #left, #right, #middle {
@@ -60,10 +76,27 @@ body {
 #win-modal-content {
     background-color: #fefefe;
     margin: 15% auto; 
-    padding: 20px;
+    padding: 50px;
     border: 1px solid #888;
-    width: 80%; 
-  }
+    width: 50%; 
+    text-align: center;
+    border-radius: 15px;
+}
+
+#winner {
+    font-size: 5vh;
+    
+}
+
+#header-title {
+    margin-left: 2%;
+}
+
+#footer-container {
+    text-align: center;
+    background-color: white;
+    color: #010101;
+}
 
 .current-turn {
     background-color: #4CAF50;
@@ -85,6 +118,7 @@ body {
     overflow: auto;
     background-color: rgb(0,0,0); 
     background-color: rgba(0,0,0,0.4); 
+    overflow: hidden;
 }
 
 .close {
@@ -99,4 +133,11 @@ body {
   color: #f44336;
   text-decoration: none;
   cursor: pointer;
+}
+
+@media screen and (max-width: 1700px) {
+    #gameboard {
+        grid-template-columns: 150px 150px 150px;
+        grid-template-rows: 150px 150px 150px;
+    }
 }
