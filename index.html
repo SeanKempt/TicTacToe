@@ -6,6 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TicTacToe</title>
     <link rel="stylesheet" href="/node_modules/normalize.css/normalize.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 
@@ -18,6 +21,13 @@
             <h2>Current turn:</h2>
             <button id="player1" class="current-turn" type="button" data-turn="true">Player1</button>
             <button id="player2" type="button" data-turn="false">Player2</button>
+        </div>
+        <div id="winner-modal" class="modal">
+            <div id="win-modal-content">
+                <span class="close">&times;</span>
+                <p id="winner">Hello world this is a modal</p>
+                <button type="button" id="play-again">Play again</button>
+            </div>
         </div>
         <div id="gameboard">
             <div class="field" data-index='0' data-column='0' data-row="0"></div>
